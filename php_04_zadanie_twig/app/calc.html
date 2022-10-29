@@ -1,0 +1,33 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="container medium">
+	<form action="{{app_url}}/app/calc.php#fourth" method="post">
+		<label for="id_kwota">Kwota: </label>
+		<input id="id_kwota" type="text" name="kwota" value="{{kwota}}" />
+		<label for="id_lata">Lata: </label>
+		<input id="id_lata" type="text" name="lata" value="{{lata}}" />
+		<label for="id_oprocentowanie">Oprocentowanie (%): </label>
+		<input id="id_oprocentowanie" type="text" name="oprocentowanie" value="{{oprocentowanie}}" /><br />
+		<input type="submit" value="Oblicz" style="display:block; margin : 0 auto;" />
+	</form>	
+</div>	
+<div class="container medium2">
+{# wyświeltenie listy błędów, jeśli istnieją #}
+{% if messages is defined %}
+	{% if messages|length > 0 %} 
+		<ol>
+		{% for msg in messages %}
+			<li>{{ msg }}</li>
+		{% endfor %}
+		</ol>
+	{% endif %}
+{% endif %}
+
+
+{% if result is defined %}
+<h1>Miesięczna rata wynosi: 
+		{{result}} zł</h1>
+{% endif %}
+</div>
+{% endblock %}
